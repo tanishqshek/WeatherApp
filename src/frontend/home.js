@@ -13,7 +13,7 @@ const Home = () => {
         setError('');
 
         try {
-            const response = await fetch(`http://localhost:6000/api/weather?city=${city}`);
+            const response = await fetch(`http://localhost:6000/api/weather?city=${cityName}`);
 
             if(!response.ok) {
                 throw new Error('Unable to fetch city');
