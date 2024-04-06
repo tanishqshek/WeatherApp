@@ -4,8 +4,6 @@ const mongodb = require('mongoose');
 const { Schema } = mongodb;
 
 const app = express();
-const Weather = mongodb.model('Weather', weatherSchema);
-
 const PORT = process.env.PORT || 8888;
 const uri = "mongodb+srv://shaikhtanishq:8FfwvfgXE4ssz33V@weathercluster.uacqtze.mongodb.net/?retryWrites=true&w=majority&appName=weatherCluster";
 
@@ -26,6 +24,7 @@ const weatherSchema = new Schema({
   createdAt: { type: Date, default: Date.now, expires: 60 * 30 }
 });
 
+const Weather = mongodb.model('Weather', weatherSchema);
 
 app.use(bodyParser.json());
 
@@ -56,6 +55,7 @@ app.get('/api/weather', async (req, res) => {
     if (!response.ok) {
       throw new Error('City not found');
     }
+    
 
     const weatherData = formatWeatherData(data);
     res.set('Access-Control-Allow-Origin', '*');
