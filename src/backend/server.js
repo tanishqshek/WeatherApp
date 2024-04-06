@@ -1,3 +1,6 @@
+const secretName = 'weatherApp';
+const { getSecretValue } = require('./config/aws');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('mongoose');
@@ -5,10 +8,18 @@ const { Schema } = mongodb;
 
 const app = express();
 const PORT = process.env.PORT || 8888;
-const uri = "mongodb+srv://shaikhtanishq:8FfwvfgXE4ssz33V@weathercluster.uacqtze.mongodb.net/?retryWrites=true&w=majority&appName=weatherCluster";
 
-mongodb.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongodb.connection;
+getSecretValue(secretName)
+  .then(secret => {
+    // Now you can access the secret object
+    console.log('Secret:', secret);
+    // Example: const apiKey = secret.API_KEY;
+    // Continue with your application logic here
+  })
+  .catch(error => {
+    console.error('Error fetching secret:', error);
+    // Handle error appropriately
+  });
 
 const formatWeatherData = (weatherData) => {
   return {
@@ -29,9 +40,20 @@ const Weather = mongodb.model('Weather', weatherSchema);
 app.use(bodyParser.json());
 
 app.get('/api/weather', async (req, res) => {
+
+  // Fetching the secrets and setting variables
+  const secrets = await getSecretValue(secretName);
+  const api_key = secrets.API_KEY;
+  const username = secrets.MONGODB_USERNAME;
+  const password = secrets.MONGODB_PASSWORD;
+
+  const uri = `mongodb+srv://${username}:${password}@weathercluster.uacqtze.mongodb.net/?retryWrites=true&w=majority&appName=weatherCluster`;
+
+  mongodb.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  const db = mongodb.connection;
+
   const cityName = req.query.cityName;
-  const apiKey = 'c8cb8273e6e7ac70c2fcb2f9cb6a4068';
-  const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
+  const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${api_key}`;
 
   try {
 
