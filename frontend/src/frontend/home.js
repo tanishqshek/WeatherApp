@@ -16,7 +16,7 @@ const Home = () => {
             setError('');
 
             try {
-                const response = await fetch(`http://localhost:8888/api/weather?cityName=${cityName}`);
+                const response = await fetch(`https://weatherappbackend-y5hs.onrender.com/api/weather?cityName=${cityName}`);
 
                 const data = await response.json();
                 setWeather(data);
