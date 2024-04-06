@@ -8,6 +8,7 @@ const Home = () => {
         const [error, setError] = useState('');
         const [isLoading, setIsLoading] = useState(false);
         const [dataLoaded, setDataLoaded] = useState(false);
+        let webURL = process.env.backendURL;
 
         const handleSubmitEvent = async (event) => {
             setDataLoaded(false);
@@ -16,7 +17,11 @@ const Home = () => {
             setError('');
 
             try {
-                const response = await fetch(`https://weatherappbackend-y5hs.onrender.com/api/weather?cityName=${cityName}`);
+                if (webURL == null || undefined || '') {
+                    webURL = 'http://localhost:8888';
+                }
+
+                const response = await fetch(`${webURL}/api/weather?cityName=${cityName}`);
 
                 const data = await response.json();
                 setWeather(data);
