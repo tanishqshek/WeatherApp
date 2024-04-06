@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Weather App is a web application built with Node.js, Express, React, and MongoDB, designed to provide users with real-time weather information for any city. This is robust application using AWS Secrets Manager for secrets storage and MongoDB for caching purposes.
 
-## Available Scripts
+## Hosted on:
 
-In the project directory, you can run:
+https://weatherapp-48lu.onrender.com
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Allows users to search for weather information by city name.
+- Displays temperature, description, and other weather details for the selected city.
+- Caches weather data to improve performance and reduce API requests.
+- Uses AWS Secrets Manager to stash the secrets which include the API key, AWS credentials and Mongo credentials.
+- Responsive design for seamless usage on desktop and mobile devices.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **Frontend**: React.js
+- **Backend**: Node.js, Express
+- **Database**: MongoDB (Caching)
+- **API**: OpenWeather API
+- **Secrets Manager**: AWS Secrets Manager
+- **Deployment**: Render.com
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
 
-### `npm run build`
+### Screenshot for the UI
+![Screenshot 1](frontend/public/Screenshot1.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Latency difference between fetching from cache and fetching from the API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When fetching form the API the latency is 2160 ms while fetching from the cache takes merely 242 ms. This could be beneficial for large-scale applications.
+![Screenshot 2](frontend/public/Screenshot2.png)
 
-### `npm run eject`
+## Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/tanishqshek/WeatherApp.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Run `npm install` in both the folders**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    ```bash
+    cd frontend
+    npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    cd backend
+    npm install
+    ```
 
-## Learn More
+3. **Change the URL for the backend to local host if you wish to run locally**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Run `node server.js` in the backend folder to run the backend server**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. **Run `npm start` in the frontend folder to run the frontend**
