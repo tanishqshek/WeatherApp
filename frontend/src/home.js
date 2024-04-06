@@ -1,6 +1,7 @@
 import React, {
     useState
 } from 'react';
+import './home.css';
 
 const Home = () => {
         const [cityName, setCityName] = useState('');
@@ -35,30 +36,29 @@ const Home = () => {
         }
 
         return (
-            <div>
-                <h1>Weather Data</h1>
-                <input
-                  type="text"
-                  placeholder="Enter city name"
-                  value={cityName}
-                  onChange={handleInputChange} />
-                
-                <button type="text" onClick = {handleSubmitEvent}>Get Weather</button>
-              {<br/>}
-              {error && <p>{error}</p>}
-        
+            <div className="weather-container">
+              <h1>Weather Data</h1>
+              <input
+                className="city-input"
+                type="text"
+                placeholder="Enter city name"
+                value={cityName}
+                onChange={handleInputChange} />
+              <button className="get-weather-btn" onClick={handleSubmitEvent}>Get Weather</button>
+              <br />
+              {error && <p className="error-msg">{error}</p>}
               {isLoading ? (
                 <h2>Loading...</h2>
-                ) : dataLoaded && weather ? (
-                    <div>
-                        <h2>City: {weather.city}</h2>
-                        <h2>Temperature: {weather.temperature}</h2>
-                        <h2>Description: {weather.description}</h2>
-                    </div>
-                ) : null }
-              
+              ) : dataLoaded && weather ? (
+                <div className="weather-info">
+                  <h2>City: {weather.city}</h2>
+                  <h2>Temperature: {weather.temperature}°C</h2>
+                  <h2>Description: {weather.description}</h2>
+                </div>
+              ) : null}
             </div>
           );
+          
         
         };
 

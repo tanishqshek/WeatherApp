@@ -1,0 +1,43 @@
+.weather-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center; 
+  margin-top: 50px; 
+}
+
+.city-input {
+  width: calc(100% - 22px);
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.get-weather-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.get-weather-btn:hover {
+  background-color: #0056b3;
+}
+
+.error-msg {
+  color: red;
+  margin-top: 10px;
+}
+
+.weather-info {
+  margin-top: 20px;
+}
+
+.weather-info h2 {
+  margin-bottom: 10px;
+}
