@@ -4,6 +4,10 @@ Weather App is a web application built with Node.js, Express, React, and MongoDB
 
 ## Hosted on:
 
+| **⚠️ Warning**                               | 
+|------------------------------------------|
+| The initial startup time for Render.com server is ~50 seconds so the first time you call, it may be a delayed response. The subsequent responses are quick.     |
+
 https://weatherapp-48lu.onrender.com
 
 ## Features
